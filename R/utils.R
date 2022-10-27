@@ -31,9 +31,9 @@ bootstrap_samples <- function(query_db,results_db,bootstraps=10000,eps=1e-6) {
 #'
 #' @return Embedding dataframe with CUI, SemanticType, and String columns prepended
 #' @export
-bind_semantic_types <- function(embedding_df){
+bind_semantic_types <- function(embedding_df, semantic_type){
 
-  semantic_embedding_df <- data.frame(embedding_df)
+  semantic_embedding_df <- data.frame(embedding_df, semantic_type)
 
 
   if(all(c("CUI", "SemanticType", "String") %in% colnames(semantic_embedding_df))){
@@ -45,8 +45,6 @@ bind_semantic_types <- function(embedding_df){
       dplyr::mutate(CUI=rownames(semantic_embedding_df)) %>%
       dplyr::select(.data$CUI, dplyr::everything())
   }
-
-  cui2vec:::semantic_type
 
   semantic_embedding_df <- semantic_embedding_df %>%
     dplyr::inner_join(semantic_type,by='CUI') %>%
