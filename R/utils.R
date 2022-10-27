@@ -46,7 +46,7 @@ bind_semantic_types <- function(embedding_df){
       dplyr::select(.data$CUI, dplyr::everything())
   }
 
-  data(semantic_type)
+  cui2vec:::semantic_type
 
   semantic_embedding_df <- semantic_embedding_df %>%
     dplyr::inner_join(semantic_type,by='CUI') %>%
