@@ -33,7 +33,7 @@ bootstrap_samples <- function(query_db,results_db,bootstraps=10000,eps=1e-6) {
 #' @export
 bind_semantic_types <- function(embedding_df, semantic_type){
 
-  semantic_embedding_df <- data.frame(embedding_df, semantic_type)
+  semantic_embedding_df <- data.frame(embedding_df)
 
 
   if(all(c("CUI", "SemanticType", "String") %in% colnames(semantic_embedding_df))){
